@@ -1,39 +1,33 @@
-class Point{
+class Point {
 public:
-	int x;
-	int y;
+    int x;
+    int y;
 };
 
-class Line{
+class Line {
 public:
-	Point start;
+    Point start;
     Point end;
 
-	Line(const Point& start, const Point& end){
+    Line(const Point &start, const Point &end) {
         this->start = start;
         this->end = end;
     }
-
 };
 
-class Rect{
+class Rect {
 public:
-	Point leftUp;
+    Point leftUp;
     int width;
-	int height;
+    int height;
 
-	Rect(const Point& leftUp, int width, int height){
+    Rect(const Point &leftUp, int width, int height) {
         this->leftUp = leftUp;
         this->width = width;
-		this->height = height;
+        this->height = height;
     }
-
 };
 
-//Ôö¼Ó
-class Circle{
-
-
+// ï¿½ï¿½ï¿½ï¿½
+class Circle {
 };
- 
-

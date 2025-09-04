@@ -1,87 +1,83 @@
 
 class MainForm : public Form {
 private:
-	Point p1;
-	Point p2;
+    Point p1;
+    Point p2;
 
-	vector<Line> lineVector;
-	vector<Rect> rectVector;
-	//¸Ä±ä
-	vector<Circle> circleVector;
+    vector<Line> lineVector;
+    vector<Rect> rectVector;
+    // ï¿½Ä±ï¿½
+    vector<Circle> circleVector;
 
 public:
-	MainForm(){
-		//...
-	}
-protected:
+    MainForm() {
+        //...
+    }
 
-	virtual void OnMouseDown(const MouseEventArgs& e);
-	virtual void OnMouseUp(const MouseEventArgs& e);
-	virtual void OnPaint(const PaintEventArgs& e);
+protected:
+    virtual void OnMouseDown(const MouseEventArgs &e);
+    virtual void OnMouseUp(const MouseEventArgs &e);
+    virtual void OnPaint(const PaintEventArgs &e);
 };
 
+void MainForm::OnMouseDown(const MouseEventArgs &e) {
+    p1.x = e.X;
+    p1.y = e.Y;
 
-void MainForm::OnMouseDown(const MouseEventArgs& e){
-	p1.x = e.X;
-	p1.y = e.Y;
-
-	//...
-	Form::OnMouseDown(e);
+    //...
+    Form::OnMouseDown(e);
 }
 
-void MainForm::OnMouseUp(const MouseEventArgs& e){
-	p2.x = e.X;
-	p2.y = e.Y;
+void MainForm::OnMouseUp(const MouseEventArgs &e) {
+    p2.x = e.X;
+    p2.y = e.Y;
 
-	if (rdoLine.Checked){
-		Line line(p1, p2);
-		lineVector.push_back(line);
-	}
-	else if (rdoRect.Checked){
-		int width = abs(p2.x - p1.x);
-		int height = abs(p2.y - p1.y);
-		Rect rect(p1, width, height);
-		rectVector.push_back(rect);
-	}
-	//¸Ä±ä
-	else if (...){
-		//...
-		circleVector.push_back(circle);
-	}
+    if (rdoLine.Checked) {
+        Line line(p1, p2);
+        lineVector.push_back(line);
+    } else if (rdoRect.Checked) {
+        int width = abs(p2.x - p1.x);
+        int height = abs(p2.y - p1.y);
+        Rect rect(p1, width, height);
+        rectVector.push_back(rect);
+    }
+    // ï¿½Ä±ï¿½
+    else if (...) {
+        //...
+        circleVector.push_back(circle);
+    }
 
-	//...
-	this->Refresh();
+    //...
+    this->Refresh();
 
-	Form::OnMouseUp(e);
+    Form::OnMouseUp(e);
 }
 
-void MainForm::OnPaint(const PaintEventArgs& e){
+void MainForm::OnPaint(const PaintEventArgs &e) {
+    // ï¿½ï¿½ï¿½Ö±ï¿½ï¿½
+    for (int i = 0; i < lineVector.size(); i++) {
+        e.Graphics.DrawLine(Pens.Red,
+                            lineVector[i].start.x,
+                            lineVector[i].start.y,
+                            lineVector[i].end.x,
+                            lineVector[i].end.y);
+    }
 
-	//Õë¶ÔÖ±Ïß
-	for (int i = 0; i < lineVector.size(); i++){
-		e.Graphics.DrawLine(Pens.Red,
-			lineVector[i].start.x, 
-			lineVector[i].start.y,
-			lineVector[i].end.x,
-			lineVector[i].end.y);
-	}
+    // ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½
+    for (int i = 0; i < rectVector.size(); i++) {
+        e.Graphics.DrawRectangle(Pens.Red,
+                                 rectVector[i].leftUp,
+                                 rectVector[i].width,
+                                 rectVector[i].height);
+    }
 
-	//Õë¶Ô¾ØÐÎ
-	for (int i = 0; i < rectVector.size(); i++){
-		e.Graphics.DrawRectangle(Pens.Red,
-			rectVector[i].leftUp,
-			rectVector[i].width,
-			rectVector[i].height);
-	}
+    // ï¿½Ä±ï¿½
+    // ï¿½ï¿½ï¿½Ô²ï¿½ï¿½
+    for (int i = 0; i < circleVector.size(); i++) {
+        e.Graphics.DrawCircle(Pens.Red,
+                              circleVector[i]);
+    }
 
-	//¸Ä±ä
-	//Õë¶ÔÔ²ÐÎ
-	for (int i = 0; i < circleVector.size(); i++){
-		e.Graphics.DrawCircle(Pens.Red,
-			circleVector[i]);
-	}
-
-	//...
-	Form::OnPaint(e);
+    //...
+    Form::OnPaint(e);
 }
-

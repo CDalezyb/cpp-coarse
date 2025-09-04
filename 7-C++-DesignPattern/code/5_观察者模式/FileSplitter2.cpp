@@ -1,58 +1,51 @@
-class IProgress{
+class IProgress {
 public:
-	virtual void DoProgress(float value)=0;
-	virtual ~IProgress(){}
+    virtual void DoProgress(float value) = 0;
+    virtual ~IProgress() {
+    }
 };
 
+class FileSplitter {
+    string m_filePath;
+    int m_fileNumber;
 
-class FileSplitter
-{
-	string m_filePath;
-	int m_fileNumber;
+    List<IProgress *> m_iprogressList; // ï¿½ï¿½ï¿½ï¿½Í¨Öªï¿½ï¿½ï¿½Æ£ï¿½Ö§ï¿½Ö¶ï¿½ï¿½ï¿½Û²ï¿½ï¿½ï¿½
 
-	List<IProgress*>  m_iprogressList; // ³éÏóÍ¨Öª»úÖÆ£¬Ö§³Ö¶à¸ö¹Û²ìÕß
-	
 public:
-	FileSplitter(const string& filePath, int fileNumber) :
-		m_filePath(filePath), 
-		m_fileNumber(fileNumber){
+    FileSplitter(const string &filePath, int fileNumber) :
+        m_filePath(filePath),
+        m_fileNumber(fileNumber) {
+    }
 
-	}
+    void split() {
+        // 1.ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ä¼ï¿½
 
+        // 2.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½Ä¼ï¿½ï¿½ï¿½Ð´ï¿½ï¿½
+        for (int i = 0; i < m_fileNumber; i++) {
+            //...
 
-	void split(){
+            float progressValue = m_fileNumber;
+            progressValue = (i + 1) / progressValue;
+            onProgress(progressValue); // ï¿½ï¿½ï¿½ï¿½Í¨Öª
+        }
+    }
 
-		//1.¶ÁÈ¡´óÎÄ¼þ
+    void addIProgress(IProgress *iprogress) {
+        m_iprogressList.push_back(iprogress);
+    }
 
-		//2.·ÖÅú´ÎÏòÐ¡ÎÄ¼þÖÐÐ´Èë
-		for (int i = 0; i < m_fileNumber; i++){
-			//...
-
-			float progressValue = m_fileNumber;
-			progressValue = (i + 1) / progressValue;
-			onProgress(progressValue);//·¢ËÍÍ¨Öª
-		}
-
-	}
-
-
-	void addIProgress(IProgress* iprogress){
-		m_iprogressList.push_back(iprogress);
-	}
-
-	void removeIProgress(IProgress* iprogress){
-		m_iprogressList.remove(iprogress);
-	}
-
+    void removeIProgress(IProgress *iprogress) {
+        m_iprogressList.remove(iprogress);
+    }
 
 protected:
-	virtual void onProgress(float value){
-		
-		List<IProgress*>::iterator itor=m_iprogressList.begin();
+    virtual void onProgress(float value) {
+        List<IProgress *>::iterator itor = m_iprogressList.begin();
 
-		while (itor != m_iprogressList.end() )
-			(*itor)->DoProgress(value); //¸üÐÂ½ø¶ÈÌõ
-			itor++;
-		}
-	}
-};
+        while (itor != m_iprogressList.end())
+            (*itor)->DoProgress(value); // ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½
+        itor++;
+    }
+}
+}
+;

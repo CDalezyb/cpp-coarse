@@ -1,67 +1,58 @@
-class Shape{
+class Shape {
 public:
-	virtual void Draw(const Graphics& g)=0;
-	virtual ~Shape() { }
+    virtual void Draw(const Graphics &g) = 0;
+    virtual ~Shape() {
+    }
 };
 
-
-class Point{
+class Point {
 public:
-	int x;
-	int y;
+    int x;
+    int y;
 };
 
-class Line: public Shape{
+class Line : public Shape {
 public:
-	Point start;
-	Point end;
+    Point start;
+    Point end;
 
-	Line(const Point& start, const Point& end){
-		this->start = start;
-		this->end = end;
-	}
+    Line(const Point &start, const Point &end) {
+        this->start = start;
+        this->end = end;
+    }
 
-	//ÊµÏÖ×Ô¼ºµÄDraw£¬¸ºÔð»­×Ô¼º
-	virtual void Draw(const Graphics& g){
-		g.DrawLine(Pens.Red, 
-			start.x, start.y,end.x, end.y);
-	}
-
+    // Êµï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Drawï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½
+    virtual void Draw(const Graphics &g) {
+        g.DrawLine(Pens.Red,
+                   start.x, start.y, end.x, end.y);
+    }
 };
 
-class Rect: public Shape{
+class Rect : public Shape {
 public:
-	Point leftUp;
-	int width;
-	int height;
+    Point leftUp;
+    int width;
+    int height;
 
-	Rect(const Point& leftUp, int width, int height){
-		this->leftUp = leftUp;
-		this->width = width;
-		this->height = height;
-	}
+    Rect(const Point &leftUp, int width, int height) {
+        this->leftUp = leftUp;
+        this->width = width;
+        this->height = height;
+    }
 
-	//ÊµÏÖ×Ô¼ºµÄDraw£¬¸ºÔð»­×Ô¼º
-	virtual void Draw(const Graphics& g){
-		g.DrawRectangle(Pens.Red,
-			leftUp,width,height);
-	}
-
+    // Êµï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Drawï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½
+    virtual void Draw(const Graphics &g) {
+        g.DrawRectangle(Pens.Red,
+                        leftUp, width, height);
+    }
 };
 
-//Ôö¼Ó
-class Circle : public Shape{
+// ï¿½ï¿½ï¿½ï¿½
+class Circle : public Shape {
 public:
-	//ÊµÏÖ×Ô¼ºµÄDraw£¬¸ºÔð»­×Ô¼º
-	virtual void Draw(const Graphics& g){
-		g.DrawCircle(Pens.Red,
-			...);
-	}
-
+    // Êµï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Drawï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½
+    virtual void Draw(const Graphics &g) {
+        g.DrawCircle(Pens.Red,
+                     ...);
+    }
 };
-
-
-
-
-
-
