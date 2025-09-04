@@ -1,0 +1,113 @@
+# 可执行文件
+*.exe
+*.out
+*.app
+
+# 编译中间文件和对象文件
+*.o
+*.obj
+*.lo
+*.la
+*.al
+*.libs
+*.so
+*.so.*
+*.dylib
+*.dll
+*.a
+*.lib
+
+# 预编译头文件
+*.gch
+*.pch
+
+# 依赖文件
+*.d
+
+# 调试符号文件
+*.su
+*.idb
+*.pdb
+*.ilk
+
+# 编译日志和错误文件
+*.slo
+*.log
+*.tlog
+
+# 自动生成的文件
+*.autosave
+
+# CMake 构建目录
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+
+# 自动工具生成的文件
+autom4te.cache/
+aclocal.m4
+compile
+config.guess
+config.h
+config.h.in
+config.log
+config.status
+config.sub
+configure
+depcomp
+install-sh
+libtool
+ltmain.sh
+missing
+stamp-h1
+
+# 静态分析器文件
+*.plist
+
+# 编辑器临时文件
+*~
+*.swp
+*.swo
+
+# IDE 相关文件
+.vscode/
+.idea/
+*.workspace
+*.project
+*.cbp
+
+# 备份文件
+*.backup
+*.bak
+
+# 核心转储文件
+core
+*.core
+
+# 特定于某些编译器的文件
+*.gcda
+*.gcno
+*.gcov
+
+# Qt 相关文件
+moc_*
+qrc_*
+ui_*
+*.qrc
+*.qmlc
+*.jsc
+
+# 其他常见忽略
+.DS_Store
+Thumbs.db
+
+# 特定项目构建目录（可根据需要取消注释）
+# bin/
+# obj/
+# Debug/
+# Release/
+# x64/
+# x86/
